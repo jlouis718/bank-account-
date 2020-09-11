@@ -1,0 +1,145 @@
+package bankaccount;
+
+import hw7.money;
+// This program uses java language code to describe the behavior of a bank account 
+public class Ba {
+    private String acctnum;
+    private money balance;
+     
+    public Ba( String a, money b ) 
+    {
+     
+            this.acctnum = a;
+            this.balance = b;
+    }
+     
+    public Ba() {
+     
+        this.acctnum = "000000";
+        this.balance = new money();
+    }
+    public String getAcctNum() {
+         
+        return this.acctnum;
+        }
+         
+        public money getBalance() {
+         
+        return this.balance;
+        }
+         
+        public void deposit( money depamt ) {
+         
+        this.balance = this.balance.addMoney( depamt );   
+        }
+         
+        public boolean withdraw( money withamt ) {
+         
+        if( this.balance.compareMoney( withamt ) >= 0 ) {
+         
+        this.balance = this.balance.subtractMoney( withamt );
+        return true;
+        }
+        else {
+         
+        return false;
+        }
+         
+        }
+         
+        public String toString() {
+         
+        return "Acct #" + this.acctnum + " has a balance of " + this.balance;     
+        }
+         
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import javax.swing.JOptionPane;
+
+import hw7.money;
+
+public class testbank {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        money[] m1 = new money[3];
+        
+            for( int i = 0; i < m1.length; i++ ) {
+            
+            String bal = JOptionPane.showInputDialog( "Enter balance" + i);
+            
+            // create the object AND put it in the array
+            m1[ i ] = new money( bal );
+            
+        } 
+            // print all tostring of all bankaccount object
+            for( int i = 0; i < m1.length; i++ ) {
+                
+                System.out.println( m1[ i ] + "\n" );//bank account object
+                
+            }
+
+            money max = m1[ 0 ];
+            for( int i = 1; i < m1.length; i++ ) {
+                
+                if( m1[ i ].getBalance().compareMoney(max.getBalance() == 1 ) {
+                    
+                    max = m1[ i ];
+                    
+                }
+                
+            } // ends find max loop
+            
+            System.out.println( "Max account info\n" + m1 );
+            
+            money sum = new money();
+            for( int i = 0; i < m1.length; i++ ) {
+                 
+                sum = sum.addMoney(m1[ i ].getBalance());
+                }
+                 
+                JOptionPane.showMessageDialog( null, "The sum is " + sum );
+            
+        
+            
+            
+    }
+    }
+
+}
+
+
+
+
